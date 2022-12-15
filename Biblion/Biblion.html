@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Biblion</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+    <div class="banner">
+            <div class="navbar">
+                <div class="dropdown">
+                    <div class="wrap">
+                        <div class="icon"></div>
+                        <div class="icon"></div>
+                        <div class="icon"></div>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="Biblion.html">HOME</a>
+                        <a href="#">BUY</a>
+                        <a href="#">SELL</a>
+                        <a href="signup.html">LOGIN</a>
+                        <a href="#">CONTACT US</a>
+                    </div>
+                </div>
+                <h1 class="Logo">BIBLION</h1>
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">BUY</a></li>
+                    <li><a href="#">SELL</a></li>
+                    <li>
+                        <form action=" " class="searchbar">
+                            <input type="text" placeholder="Looking for something" name="q">
+                            <button type="submit"><img src="button.png"></button>
+                        </form>
+                    </li>
+                </ul>
+
+                <c class="cta" href="#">
+                    <a href="signup.html"> <button type="button"><img src="user-3-fill.png"></button></a>
+                </c></button>
+            </div>
+        <div class="container">
+            <div class="wrapper">
+                <div class="slider-holder">
+                    <div id="img1"></div>
+                    <div id="img2"></div>
+                    <div id="img3"></div>
+                    <div id="img4"></div>
+                    <div id="img5"></div>
+                </div>
+            </div>
+            <div class="button-holder">
+                <a href="#img1" class="dots"></a>
+                <a href="#img2" class="dots"></a>
+                <a href="#img3" class="dots"></a>
+                <a href="#img4" class="dots"></a>
+                <a href="#img5" class="dots"></a>
+            </div>
+        </div>
+        <div class="container2">
+            <div class="col1">
+                <div class="text1">ADVENTURE</div>
+                <a href="Adventure.html">
+                <img src="pic1.jpg">
+                </a>
+            </div>
+            <div class="col1">
+                <div class="text2">SCIENCE FICTION</div>
+                <a href="Fiction.html">
+                <img src="pic2.jpg">
+                </a>
+            </div>
+            <div class="col1">
+                <div class="text3">NON-FICTION</div>
+                <a href="Non_Fiction.html">
+                <img src="pic3.jpg">
+                </a>
+            </div>
+            <div class="col1">
+                <div class="text4">MYSTERY</div>
+                <a href="Mystery.html">
+                <img src="pic4.jpg">
+                </a>
+            </div>
+        </div>
+        <div class="container3">
+            <div class="col2">
+                <div class="text5">HORROR</div>
+                <a href="Horror.html">
+                <img src="pic5.jpg">
+                </a>
+            </div>
+            <div class="col2">
+                <div class="text6">ROMANTIC</div>
+                <a href="Romance.html">
+                <img src="pic6.jpg">
+            </div>
+            <div class="col2">
+                <div class="text7">PARANORMAL</div>
+                <a href="Paranormal.html">
+                <img src="pic7.jpg">
+                </a>
+            </div>
+            <div class="col2">
+                <div class="text8">FANTASY</div>
+                <a href="Fantasy.html">
+                <img src="pic8.jpg">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".wrap").click(function () {
+                $(".dropdown-content").toggleClass("opensidebar")
+            });
+        });
+    </script>
+</body>
+
+</html>
