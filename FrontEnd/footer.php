@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="cart_footer_style.css">
+    <link rel="stylesheet" href="../CSS/footer_style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
 </head>
@@ -28,10 +28,10 @@
             <div class="column">
                 <h4>Connect with Us</h4>
                 <ul class="icons">
-                    <li><a href="https://www.facebook.com/"> <img src="images/facebook_logo.png"></a></li>
-                    <li><a href="https://www.instagram.com/"><img src="images/instagram_logo.png"></a></li>
-                    <li><a href="https://twitter.com/"><img src="images/twitter_logo.png"></a></li>
-                    <li><a href="https://github.com/"><img src="images/github_logo.png"></a></li>
+                    <li><a href="https://www.facebook.com/"> <img src="../images/facebook_logo.png"></a></li>
+                    <li><a href="https://www.instagram.com/"><img src="../images/instagram_logo.png"></a></li>
+                    <li><a href="https://twitter.com/"><img src="../images/twitter_logo.png"></a></li>
+                    <li><a href="https://github.com/"><img src="../images/github_logo.png"></a></li>
                 </ul>
             </div>
             <p class="copyright">© 2023 All Rights Reserved</p>

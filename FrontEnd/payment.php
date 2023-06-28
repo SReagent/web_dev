@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="payment_style.css">
+    <link rel="stylesheet" href="../CSS/payment_style.css">
     <title>Payment Page</title>
 </head>
 
@@ -15,8 +15,8 @@
         <div class="card-container">
             <div class="front">
                 <div class="image">
-                    <img src="images/chip.png" alt="">
-                    <img src="images/visa.png" alt="">
+                    <img src="../images/chip.png" alt="">
+                    <img src="../images/visa.png" alt="">
                 </div>
                 <div class="card-number-box">############</div>
                 <div class="flexbox">
@@ -91,7 +91,7 @@
 
 
     <div class="popup" id="popup">
-        <img src="images/check.png">
+        <img src="../images/check.png">
         <h2>Payment successful!</h2>
         <p></p>
         <button type="button" onclick="closePopup()">Okay</button>

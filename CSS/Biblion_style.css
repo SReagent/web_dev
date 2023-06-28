@@ -363,32 +363,32 @@ nav .scrolled {
 
 .container #img1 {
     background-color: antiquewhite;
-    background: url('images/img1.jpg');
+    background: url('../images/img1.jpg');
     background-size: cover;
 
 }
 
 .container #img2 {
     background-color: cadetblue;
-    background: url('images/img2.png');
+    background: url('../images/img2.png');
     background-size: cover;
 }
 
 .container #img3 {
     background-color: darkslategray;
-    background: url('images/img3.jpg');
+    background: url('../images/img3.jpg');
     background-size: cover;
 }
 
 .container #img4 {
     background-color: chocolate;
-    background: url('images/img4.jpg');
+    background: url('../images/img4.jpg');
     background-size: cover;
 }
 
 .container #img5 {
     background-color: aliceblue;
-    background: url('images/img5.jpg');
+    background: url('../images/img5.jpg');
     background-size: cover;
 }
 

@@ -34,7 +34,7 @@ body {
 .banner {
   width: 100%;
   /* min-height: calc(100%+300px); */
-  background-image: url('images/wp5090910-gray-aesthetic-wallpapers.jpg');
+  background-image: url('../images/wp5090910-gray-aesthetic-wallpapers.jpg');
   background-size: cover;
   background-position: center;
   position: relative;

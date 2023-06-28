@@ -1,5 +1,5 @@
 <?php
-include_once 'connect.php';
+include_once '../BackEnd/connect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,9 +8,9 @@ include_once 'connect.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genre</title>
+    <title>Rent</title>
 
-    <link rel="stylesheet" href="Genre.css">
+    <link rel="stylesheet" href="../CSS/Genre.css">
 </head>
 
 <body>
@@ -40,8 +40,8 @@ include_once 'connect.php';
             </div>
 
             <c class="cta">
-                <a href="SignIn.php"> <button type="button"><img src="images/user-3-fill.png"></button></a>
-                <a href="cart.php"> <button type="button"><img src="images/shopping-cart3.png"></button>
+                <a href="SignIn.php"> <button type="button"><img src="../images/user-3-fill.png"></button></a>
+                <a href="cart.php"> <button type="button"><img src="../images/shopping-cart3.png"></button>
                 </a>
             </c>
         </div>
@@ -49,17 +49,12 @@ include_once 'connect.php';
             <div class="InnerContainer">
                 <header class="Heading">
                     <div id="genre-heading"></div>
-                    <h1>
-                        <script>
-                            heading();
-                        </script>
-                    </h1>
+                    <h1>Novels</h1>
                 </header>
                 <ul id="books">
                     <div class="ContentContainer">
                         <?php
-                        $id = $_GET['id'];
-                        $select_query = "Select * from books where Book_Genre = $id";
+                        $select_query = "Select * from books";
                         $result_query = mysqli_query($con, $select_query);
                         while ($row = mysqli_fetch_assoc($result_query)) {
                             $book_id = $row['Book_ID'];
@@ -134,7 +129,7 @@ include_once 'connect.php';
 
                 if (input != "") {
                     $.ajax({
-                        url: "live_search.php",
+                        url: "../BackEnd/live_search.php",
                         method: "POST",
                         data: {
                             input: input

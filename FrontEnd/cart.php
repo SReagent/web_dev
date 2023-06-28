@@ -1,5 +1,5 @@
 <?php
-include_once('connect.php');
+include_once('../BackEnd/connect.php');
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ include_once('connect.php');
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="cart_style.css">
+  <link rel="stylesheet" href="../CSS/cart_style.css">
 </head>
 
 <body>
@@ -42,8 +42,8 @@ include_once('connect.php');
       </div>
 
       <c class="cta">
-        <a href="signup.php"> <button type="button"><img src="images/user-3-fill.png"></button></a>
-        <a href="cart.php"> <button type="button"><img src="images/shopping-cart3.png"></button>
+        <a href="signup.php"> <button type="button"><img src="../images/user-3-fill.png"></button></a>
+        <a href="cart.php"> <button type="button"><img src="../images/shopping-cart3.png"></button>
         </a>
       </c>
     </div>
@@ -78,6 +78,7 @@ include_once('connect.php');
             $select_query = "Select * from books b , cart c where c.Book_ID = b.Book_ID";
             $result_query = mysqli_query($con, $select_query);
             while ($row = mysqli_fetch_assoc($result_query)) {
+              $book_id = $row['Book_ID'];
               $book_title = $row['Title'];
               $book_author = $row['Author'];
               $book_image = $row['Book_Image'];
@@ -105,7 +106,7 @@ include_once('connect.php');
                   <div class='subtotal'>$subtotal</div>
 
                   <div class='remove'>
-                      <button type = 'button'>Remove</button>
+                      <button type = 'button' data-bookid='$book_id'>Remove</button>
                   </div>
                   </div>";
             }
@@ -149,20 +150,20 @@ include_once('connect.php');
 
 
         <div class="popup" id="popup">
-          <img src="images/check.png">
+          <img src="../images/check.png">
           <h2>ORDER CONFIRMED</h2>
           <p>Your order has been confirmed. You will soon receive a mail with confirmation details!</p>
           <button type="button" onclick="closePopup('popup')">Okay</button>
         </div>
 
         <div class="popup" id="popup-promo-wrong">
-          <img src="images/warning.png">
+          <img src="../images/warning.png">
           <h2>INVALID PROMO CODE</h2>
           <button type="button" onclick="closePopup('popup-promo-wrong')">Okay</button>
         </div>
 
         <div class="popup" id="popup-promo-correct">
-          <img src="images/check.png">
+          <img src="../images/check.png">
           <h2>PROMO CODE APPLIED</h2>
           <button type="button" onclick="closePopup('popup-promo-correct')">Okay</button>
         </div>
@@ -171,7 +172,7 @@ include_once('connect.php');
 
 
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-    <script src="./script.js"></script>
+    <script src="cart_script.js"></script>
     <script>
       function openPopup(popupId) {
         let popup = document.getElementById(popupId);
@@ -194,7 +195,7 @@ include_once('connect.php');
 
           if (input != "") {
             $.ajax({
-              url: "live_search.php",
+              url: "../BackEnd/live_search.php",
               method: "POST",
               data: {
                 input: input
@@ -216,7 +217,7 @@ include_once('connect.php');
     </script>
 
 
-<script>
+    <script>
       $(document).ready(function() {
         // Get all the relevant elements
         var quantityInputs = $('.quantity-field');
@@ -240,10 +241,20 @@ include_once('connect.php');
           });
         });
 
-        $('.remove button').click(function(){
+        $('.remove button').click(function() {
+
           var item = $(this).closest('.basket-product');
           item.remove();
-        })
+
+          let bookId = $(this).data("bookid").toString();
+          console.log(bookId);
+
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', '../BackEnd/delete_from_cart.php');
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          xhr.send("Book_ID=" + bookId);
+        });
+
       });
     </script>
 
@@ -267,7 +278,7 @@ include_once('connect.php');
           total += parseFloat($(this).text());
         });
         basketsubElement.text(total.toFixed(2));
-        
+
         var discount = 0;
         if (discountElement.text()) {
           discount = parseFloat(discountElement.text());
@@ -275,7 +286,7 @@ include_once('connect.php');
 
         total -= discount;
         totalElement.text(total.toFixed(2));
-        
+
         // Add event listeners to quantity input fields
         quantityInput.change(function() {
           // Get the current quantity value
@@ -301,34 +312,31 @@ include_once('connect.php');
       });
     </script>
 
-      <script>
-        $(document).ready(function(){
+    <script>
+      $(document).ready(function() {
 
 
-            var discountElement = $('#discount-value');
-            var totalElement = $('#basket-total');
-            var code = "OFF20";
-            var total = parseFloat(totalElement.text());
-            var sub_total = $('#')
-            $('.promo-code-cta').click(function(){
-              var promo = $('#promo-code').val().toUpperCase();
-              discount = 0;
-              if(code === promo)
-              {
-                  discount += 0.20*total;
-                  total -= discount;
-              totalElement.text(total.toFixed(2));
-              discountElement.text(discount.toFixed(2));
-              openPopup('popup-promo-correct');
-              }
-              else
-              {
-                openPopup('popup-promo-wrong');
-                $('#promo-code').val("");
-              }
-            });
+        var discountElement = $('#discount-value');
+        var totalElement = $('#basket-total');
+        var code = "OFF20";
+        var total = parseFloat(totalElement.text());
+        var sub_total = $('#')
+        $('.promo-code-cta').click(function() {
+          var promo = $('#promo-code').val().toUpperCase();
+          discount = 0;
+          if (code === promo) {
+            discount += 0.20 * total;
+            total -= discount;
+            totalElement.text(total.toFixed(2));
+            discountElement.text(discount.toFixed(2));
+            openPopup('popup-promo-correct');
+          } else {
+            openPopup('popup-promo-wrong');
+            $('#promo-code').val("");
+          }
         });
-      </script>
+      });
+    </script>
 
 
     <!-- Subtotal values in basket
