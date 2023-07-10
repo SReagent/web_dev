@@ -1,5 +1,5 @@
 <?php
-include_once 'connect.php';
+include_once "../BackEnd/connect.php";
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ include_once 'connect.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BookPage</title>
 
-  <link rel="stylesheet" href="bookpage_style.css">
+  <link rel="stylesheet" href="../CSS/bookpage_style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
@@ -44,8 +44,8 @@ include_once 'connect.php';
       </div>
 
       <c class="cta">
-        <a href="signup.php"> <button type="button"><img src="images/user-3-fill.png"></button></a>
-        <a href="cart.php"> <button type="button"><img src="images/shopping-cart3.png"></button>
+        <a href="signup.php"> <button type="button"><img src="../images/user-3-fill.png"></button></a>
+        <a href="cart.php"> <button type="button"><img src="../images/shopping-cart3.png"></button>
         </a>
       </c>
     </div>
@@ -77,17 +77,17 @@ include_once 'connect.php';
                 <div class='price-btnbox'>
               <div class='price-btns'>
                 <button class='price-btn__add price-btn' onclick = 'addQuantity()'>
-                  <img src='images/icon-plus.png' alt='plus sig' class='price-btn_add-img price-btn_img' />
+                  <img src='../images/icon-plus.png' alt='plus sig' class='price-btn_add-img price-btn_img' />
                 </button>
                 <span id='price-btn_txt' class='price-btn_txt'> 0 </span>
                 <button class='price-btn__remove price-btn' onclick = 'removeQuantity()'>
-                  <img src='images/icon-minus.png' alt='minus sign' class='price-btn_remove-img price-btn_img' />
+                  <img src='../images/icon-minus.png' alt='minus sign' class='price-btn_remove-img price-btn_img' />
                 </button>
                 <form method='POST' action='add_to_cart.php'>
                   <input type='hidden' name='Book_ID' value='{$bookId}'>
                   <input type='hidden' id='quantity' name='Quantity' value='0'>
                   <button type='button'>
-                    <img src='images/shopping-cart3.png' onclick='openWrong(\"{$bookId}\")'>
+                    <img src='../images/shopping-cart3.png' onclick='openWrong(\"{$bookId}\")'>
                   </button>
                 </form>
               </div>
@@ -97,7 +97,7 @@ include_once 'connect.php';
           </div>
         </div>
       <div class='popup' id='popup'>
-        <img src='images/check.png'>
+        <img src='../images/check.png'>
         <p class = 'popup-message' id='popup-message'></p>
         <button type='button' onclick='closePopup()'>Okay</button>
       </div>";
@@ -113,8 +113,8 @@ include_once 'connect.php';
 
     <div class='container'>
       <?php
-      require 'vendor/autoload.php';
-      include_once 'connect.php';
+      require '../vendor/autoload.php';
+      include_once '../BackEnd/connect.php';
 
       $bookid = (string)$_GET['id'];
       $query = "SELECT Content FROM books WHERE Book_ID = '$bookid'";
@@ -159,21 +159,21 @@ include_once 'connect.php';
 
         // Send an AJAX request to the server to add the book to the cart
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'add_to_cart.php');
+        xhr.open('POST', '../BackEnd/add_to_cart.php');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
           if (xhr.status === 200) {
             // Show the success message
             let img = document.querySelector("#popup img");
             let message = document.querySelector("#popup p");
-            img.src = "images/check.png";
+            img.src = "../images/check.png";
             message.textContent = "ADDED TO CART";
             popup.classList.add("open-popup");
           } else {
             // Show the error message
             let img = document.querySelector("#popup img");
             let message = document.querySelector("#popup p");
-            img.src = "images/cancel-icon.png";
+            img.src = "../images/cancel-icon.png";
             message.textContent = "ITEM NOT ADDED";
             popup.classList.add("open-popup");
           }
@@ -194,7 +194,7 @@ include_once 'connect.php';
           // Show the error message
           let img = document.querySelector("#popup img");
           let message = document.querySelector("#popup p");
-          img.src = "images/cancel-icon.png";
+          img.src = "../images/cancel-icon.png";
           message.textContent = "ITEM NOT ADDED";
           popup.classList.add("open-popup");
         }
@@ -227,7 +227,7 @@ include_once 'connect.php';
 
           if (input != "") {
             $.ajax({
-              url: "live_search.php",
+              url: "../BackEnd/live_search.php",
               method: "POST",
               data: {
                 input: input

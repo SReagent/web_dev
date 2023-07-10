@@ -1,5 +1,5 @@
 <?php
-include_once 'connect.php';
+include_once '../BackEnd/connect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,7 @@ include_once 'connect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Biblion</title>
 
-    <link rel="stylesheet" href="Biblion_style.css">
+    <link rel="stylesheet" href="../CSS/Biblion_style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
@@ -40,8 +40,8 @@ include_once 'connect.php';
                 <div class="search-result-container" id="searchresult"></div>
             </div>
             <c class="cta">
-                <a href="SignIn.php"> <button type="button"><img src="images/user-3-fill.png"></button></a>
-                <a href="cart.php"> <button type="button"><img src="images/shopping-cart3.png"></button>
+                <a href="SignIn.php"> <button type="button"><img src="../images/user-3-fill.png"></button></a>
+                <a href="cart.php"> <button type="button"><img src="../images/shopping-cart3.png"></button>
                 </a>
             </c>
         </div>
@@ -75,25 +75,25 @@ include_once 'connect.php';
                 <div class='col1'>
                     <div class='text'>ADVENTURE</div>
                         <a href='Genre.php?id=1'>
-                        <img src='images/DALL·E 2023-03-26 18.26.49 - line art of a mountain with a dark background.png'>
+                        <img src='../images/Adventure.png'>
                         </a>
                 </div>
                 <div class='col1'>
                     <div class='text'>SCIENCE FICTION</div>
                         <a href='Genre.php?id=2'>
-                        <img src='images/DALL·E 2023-03-26 18.27.50 - line art depicting science fiction with a dark background.png'>
+                        <img src='../images/ScienceFiction.png'>
                         </a>
                 </div>
                 <div class='col1'>
                     <div class='text'>NON-FICTION</div>
                         <a href='Genre.php?id=3'>
-                        <img src='images/DALL·E 2023-03-26 18.28.49 - line art of a brain with a dark background.png'>
+                        <img src='../images/NonFiction.png'>
                         </a>
                 </div>
                 <div class='col1'>
                     <div class='text'>MYSTERY</div>
                         <a href='Genre.php?id=4'>
-                        <img src='images/DALL·E 2023-03-27 21.35.56 - line art depicting mystery with a dark background.png'>
+                        <img src='../images/Mystery.png'>
                         </a>
                 </div>
             </div>
@@ -101,25 +101,25 @@ include_once 'connect.php';
                 <div class='col2'>
                     <div class='text'>HORROR</div>
                         <a href='Genre.php?id=5'>
-                        <img src='images/DALL·E 2023-03-30 09.48.05 - line art of a paranormal activity with a dark background.png'>
+                        <img src='../images/Horror.png'>
                         </a>
                 </div>
                 <div class='col2'>
                     <div class='text'>ROMANTIC</div>
                         <a href='Genre.php?id=6'>
-                        <img src='images/DALL·E 2023-03-30 09.45.03 - line art of a couple with a dark background.png'>
+                        <img src='../images/Romantic.png'>
                         </a>
                 </div>
                 <div class='col2'>
                     <div class='text'>PARANORMAL</div>
                     <a href='Genre.php?id=7'>
-                    <img src='images/DALL·E 2023-03-29 20.33.22 - line art depicting horror with a dark background.png'>
+                    <img src='../images/Paranormal.png'>
                     </a>
                 </div>
                 <div class='col2'>
                     <div class='text'>FANTASY</div>
                     <a href='Genre.php?id=8'>
-                    <img src='images/DALL·E 2023-03-30 09.48.45 - line art of fantasy land with a dark background.png'>
+                    <img src='../images/Fantasy.png'>
                     </a>
                 </div>
             </div>"
@@ -180,7 +180,7 @@ include_once 'connect.php';
 
                 if (input != "") {
                     $.ajax({
-                        url: "live_search.php",
+                        url: "../BackEnd/live_search.php",
                         method: "POST",
                         data: {
                             input: input
