@@ -123,3 +123,43 @@ function removeItem(removeButton) {
     updateSumItems();
   });
 }
+
+
+
+// function recalculateCart(onlyTotal) {
+//   var subtotal = 0;
+
+//   $('.basket-product').each(function() {
+//     subtotal += parseFloat($(this).children('.subtotal').text());
+//   });
+
+//   var total = subtotal;
+
+//   var promoPrice = parseFloat($('.promo-value').text());
+//   if (promoPrice && !flag) {
+//     if (subtotal >= 10) {
+//       total -= promoPrice;
+//     } else {
+//       alert('Order must be more than £10 for Promo code to apply.');
+//       $('.summary-promo').addClass('hide');
+//     }
+//   }
+
+//   if (onlyTotal) {
+//     $('.total-value').fadeOut(fadeTime, function() {
+//       $('#basket-total').html(total.toFixed(2));
+//       $('.total-value').fadeIn(fadeTime);
+//     });
+//   } else {
+//     $('.final-value').fadeOut(fadeTime, function() {
+//       $('#basket-subtotal').html(subtotal.toFixed(2));
+//       $('#basket-total').html(total.toFixed(2));
+//       if (total == 0) {
+//         $('.checkout-cta').fadeOut(fadeTime);
+//       } else {
+//         $('.checkout-cta').fadeIn(fadeTime);
+//       }
+//       $('.final-value').fadeIn(fadeTime);
+//     });
+//   }
+// }

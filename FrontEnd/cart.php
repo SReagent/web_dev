@@ -312,31 +312,37 @@ include_once('../BackEnd/connect.php');
       });
     </script>
 
-    <script>
-      $(document).ready(function() {
+<script>
+        var flag=false;
+        $(document).ready(function(){
 
 
-        var discountElement = $('#discount-value');
-        var totalElement = $('#basket-total');
-        var code = "OFF20";
-        var total = parseFloat(totalElement.text());
-        var sub_total = $('#')
-        $('.promo-code-cta').click(function() {
-          var promo = $('#promo-code').val().toUpperCase();
-          discount = 0;
-          if (code === promo) {
-            discount += 0.20 * total;
-            total -= discount;
-            totalElement.text(total.toFixed(2));
-            discountElement.text(discount.toFixed(2));
-            openPopup('popup-promo-correct');
-          } else {
-            openPopup('popup-promo-wrong');
-            $('#promo-code').val("");
-          }
+            var discountElement = $('#discount-value');
+            var totalElement = $('#basket-total');
+            var code = "OFF20";
+            var total = parseFloat(totalElement.text());
+            var sub_total = $('#basket-subtotal');
+            var subtotal = parseFloat(sub_total.text());
+            $('.promo-code-cta').click(function(){
+              var promo = $('#promo-code').val().toUpperCase();
+              discount = 0;
+              if(code === promo&&flag==false)
+              {
+                flag=true;
+                discount += 0.20*subtotal;
+                total -=0.20*subtotal;
+                totalElement.text(total.toFixed(2));
+                discountElement.text(discount.toFixed(2));
+                openPopup('popup-promo-correct');
+              }
+              else
+              {
+                openPopup('popup-promo-wrong');
+                $('#promo-code').val("");
+              }
+            });
         });
-      });
-    </script>
+      </script>
 
 
     <!-- Subtotal values in basket
