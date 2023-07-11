@@ -5,6 +5,7 @@
   <title>Login</title>
   <link rel="stylesheet" href="../CSS/SignIn_style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -12,11 +13,10 @@
     <h1>Login</h1>
     <form class="login-form" id="login-form">
       <label>Email</label>
-      <input type="email" placeholder="" required autofocus />
+      <input id="email" type="email" placeholder="" autocomplete="off" required autofocus />
       <label>Password</label>
-      <input id="password" type="password" placeholder="" required minlength="8"/>
+      <input id="password" type="password" placeholder="" autocomplete="off" required minlength="8" />
       <button type="reset" onclick="loginConfirm(event)">Log in</button>
-      <closeform></closeform>
     </form>
   </div>
   <p class="para-2">
@@ -28,7 +28,7 @@
       var fields = form.elements;
 
       for (var i = 0; i < fields.length; i++) {
-        if (fields[i].required && fields[i].value === ""){
+        if (fields[i].required && fields[i].value === "") {
           return false;
         }
       }
@@ -36,38 +36,58 @@
     }
 
     function isFormValid(form) {
-      var fields = form.elements;
+      var email = document.getElementById("email").value;
+      var emailRegex = /^\S+@\S+\.\S+$/;
 
-        if (! fields[0].checkValidity()){
-          return false; 
-      }
-      return true;
+      return emailRegex.test(email);
     }
 
     function loginConfirm(event) {
+      var email = document.getElementById("email").value;
       var form = document.getElementById("login-form");
       var password = document.getElementById("password").value;
       event.preventDefault();
 
-      if(! isFormComplete(form)){
+      if (!isFormComplete(form)) {
         alert("Please fill in all required fields.");
         return;
-      } 
-      if(! isFormValid(form)){
+      }
+      if (!isFormValid(form)) {
         alert("Please enter a valid e-mail address");
         return;
       }
 
-      if(password.length < 8){
+      if (password.length < 8) {
         alert("Password must be atleast 8 characters long");
         return;
       }
+      var formData = {
+        email: email,
+        password: password,
+      };
 
-      alert("Logged in successfully. Redirecting to homepage...");
-      window.location.href = "Biblion.php";
-      
+      $.ajax({
+        type: "POST",
+        url: "../BackEnd/backend_signin.php",
+        data: formData,
+        success: function(response) {
+          console.log(response);
+          if (response === "success") {
+            alert("Logged in successfully. Redirecting to homepage...");
+            window.location.href = "Biblion.php";
+          } else if (response === "error") {
+            alert("Error occurred while logging in. Please try again.");
+          } else if (response === "invalid") {
+            alert("Invalid email or password.");
+          }
+        },
+        error: function(xhr, status, error) {
+          console.log(error);
+          alert("An error occurred while processing your request. Please try again later.");
+        },
+      })
+
     }
-
   </script>
 </body>
 

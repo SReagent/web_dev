@@ -3,17 +3,17 @@ body {
     font-family: "Roboto", sans-serif;
     margin: 0;
     height: 100vh;
-    overflow-y: none;
 }
 
 .signup-box {
     width: 360px;
-    height: 600px;
+    height: auto;
     margin: auto;
     background-color: white;
     border-radius: 3px;
-    top: 15%;
+    top: 7%;
     position: relative;
+    padding: 0.5rem;
 }
 
 .login-box {
