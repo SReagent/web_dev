@@ -40,7 +40,21 @@ include_once '../BackEnd/connect.php';
                 <div class="search-result-container" id="searchresult"></div>
             </div>
             <c class="cta">
-                <a href="SignIn.php"> <button type="button"><img src="../images/user-3-fill.png"></button></a>
+                <!-- <a href="SignIn.php"> <button type="button"><img src="../images/user-3-fill.png"></button></a> -->
+                <div class="signin">
+                    <div class="buttonlogin">
+                        <a  href="SignIn.php"> <button type="button"><img src="../images/user-3-fill.png"></button></a>
+                    </div>
+                    <div class="login">
+                        <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true): ?>
+                            <button>Login</button>
+                        <?php else: ?>
+                            Welcome!
+                            <a href=""><button onclick="signOut()">Log out</button></a>
+                            
+                        <?php endif; ?>
+                    </div>
+                </div>
                 <a href="cart.php"> <button type="button"><img src="../images/shopping-cart3.png"></button>
                 </a>
             </c>
@@ -201,6 +215,18 @@ include_once '../BackEnd/connect.php';
             });
         });
     </script>
+    <script>
+    function signOut() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "../BackEnd/backend_signout.php?signout=true", true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                window.location.href = "Signin.php";
+            }
+        };
+        xhr.send();
+    }
+</script>
     <?php include('footer.php') ?>
 </body>
 
