@@ -23,7 +23,7 @@ body {
 }
 
 .containerfirst {
-    background-image: url(images/Unsplash-homepage.jpg);
+    background-image: url(../images/Unsplash-homepage.jpg);
     background-size: cover;
     height: 100vh;
 
@@ -181,6 +181,7 @@ nav .scrolled {
 }
 
 .search-result-container {
+    border-radius: 10px;
     width: 100%;
     margin-bottom: 0px;
     position: absolute;
@@ -230,112 +231,30 @@ nav .scrolled {
     display: inline-block;
 }
 
-.cta button {
-    border: 0;
-    width: 60px;
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+}
+
+.cta{
+    gap: 1rem;
+}
+
+.cta button{
     height: 60px;
-    background: rgba(174, 180, 183, 0.670);
-    border-radius: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: 0;
     cursor: pointer;
 }
 
-.cta {
-    width: 150px;
-    display: inline-flex;
-    justify-content: space-between;
-}
-
-.cta a {
-    text-decoration: none;
-    display: inline-flex;
-}
-
-
-@media (max-width: 1180px) {
-    .navbar {
-        padding: 10px;
-        transition: .2s;
-    }
-
-    .navbar ul li a {
-        padding: 5px 0;
-        margin: 0px 20px;
-    }
-}
-
-@media (max-width: 975px) {
-    .Logo {
-        font-size: 40px;
-    }
-
-    .navbar {
-        padding: 2px;
-        transition: .2s;
-        margin-top: 10px;
-    }
-
-    .navbar ul li a {
-        padding: 5px 0;
-        margin: 0px 20px;
-    }
-
-    .searchbar {
-        max-width: 180px;
-    }
-
-    .searchbar input {
-        padding: 0px 0px;
-        width: 40%;
-    }
-}
-
-@media (max-width: 830px) {
-    .banner {
-        width: 100%;
-    }
-
-    .Logo {
-        font-size: 30px;
-    }
-
-    .navbar {
-        width: 90%;
-        padding: 15px;
-        margin-top: 10px;
-    }
-
-    .navbar ul li a {
-        display: none;
-    }
-}
-
-@media (max-width: 520px) {
-    .banner {
-        width: 100%;
-    }
-
-    .Logo {
-        font-size: 25px;
-    }
-
-    .navbar {
-        width: 90%;
-        padding: 25px;
-    }
-
-    .navbar ul li a {
-        display: none;
-    }
-
-    .searchbar {
-        max-width: 90px;
-    }
-
-    .searchbar input {
-        padding: 0px 0px;
-        width: 20%;
-        font-display: none;
-    }
+.cta img{
+    height: 50%;
+    width: 50%;
+    object-fit: contain;
 }
 
 /* Navbar ends */

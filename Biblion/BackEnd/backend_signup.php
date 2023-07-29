@@ -1,5 +1,6 @@
 <?php
 include_once'connect.php';
+session_start();
 
 $username = $_POST["username"];
 $email = $_POST["email"];
@@ -18,6 +19,8 @@ if (mysqli_num_rows($result) > 0) {
     $insertResult = mysqli_query($con, $insertQuery);
 
     if ($insertResult) {
+        $_SESSION['loggedIn'] = true;
+        $_SESSION['email'] = $email;
         echo "success";
         exit();
     } else {

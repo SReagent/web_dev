@@ -1,5 +1,6 @@
 <?php
 include_once '../BackEnd/connect.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,35 +16,34 @@ include_once '../BackEnd/connect.php';
 
 <body>
     <div class="banner">
-        <div class="navbar">
-            <div class="dropdown">
-                <div class="wrap">
-                    <div class="icon"></div>
-                    <div class="icon"></div>
-                    <div class="icon"></div>
-                </div>
-                <div class="dropdown-content">
-                    <a href="Biblion.php">HOME</a>
-                    <a href="Rent.php">RENT</a>
-                    <a href="SignIn.php">SIGN IN</a>
-                </div>
+        <div id="navbar" class="navbar">
+            <h4 id="Logo" class="Logo">BIBLION</h4>
+            <div class="Links">
+                <ul>
+                    <li><a href="Biblion.php">HOME</a></li>
+                    <li><a href="Rent.php">RENT</a></li>
+                </ul>
             </div>
-            <h1 class="Logo">BIBLION</h1>
-            <ul>
-                <li><a href="Biblion.php">HOME</a></li>
-                <li><a href="Rent.php">RENT</a></li>
-            </ul>
-
             <div class="search-container">
                 <input type="text" class="searchbar" id="live_search" autocomplete="off" placeholder="Looking for something">
                 <div class="search-result-container" id="searchresult"></div>
             </div>
-
-            <c class="cta">
-                <a href="SignIn.php"> <button type="button"><img src="../images/user-3-fill.png"></button></a>
-                <a href="cart.php"> <button type="button"><img src="../images/shopping-cart3.png"></button>
-                </a>
-            </c>
+            <div class="buttons">
+                <div class="cta">
+                    <?php if (isset($_SESSION['loggedIn'])) : ?>
+                        <a href=""><button><img src="../images/logout.png"></button></a>
+                    <?php else : ?>
+                        <a href="SignIn.php"><button onclick="signOut()"><img src="../images/user-3-fill.png"></button></a>
+                    <?php endif; ?>
+                </div>
+                <div class="cta">
+                    <?php if (isset($_SESSION['loggedIn'])) : ?>
+                        <a href="cart.php"> <button type="button"><img src="../images/shopping-cart3.png"></button></a>
+                    <?php else : ?>
+                        <a href="SignIn.php"> <button type="button"><img src="../images/shopping-cart3.png"></button></a>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
         <div class="OuterContainer">
             <div class="InnerContainer">
@@ -153,6 +153,16 @@ include_once '../BackEnd/connect.php';
                 window.location.href = "bookpage.php?id=" + bookid.toString();
             });
         });
+    </script>
+
+    <script>
+        signOut = () => {
+            <?php
+                unset($_SESSION['loggedIn']);
+                unset($_SESSION['email']);
+                session_destroy();
+            ?>
+        }
     </script>
 </body>
 <?php include('footer.php') ?>

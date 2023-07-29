@@ -73,8 +73,7 @@
         success: function(response) {
           console.log(response);
           if (response === "success") {
-            alert("Logged in successfully. Redirecting to homepage...");
-            window.location.href = "Biblion.php";
+            window.location.href = document.referrer;
           } else if (response === "error") {
             alert("Error occurred while logging in. Please try again.");
           } else if (response === "invalid") {

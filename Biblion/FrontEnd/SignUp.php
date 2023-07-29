@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,8 +98,7 @@
         data: formData,
         success: function(response) {
           if (response === "success") {
-              alert("Signed up successfully. Redirecting to homepage...");
-              window.location.href = "Biblion.php";
+            window.location.href = document.referrer;
           } else if (response === "duplicate") {
             alert("Username or email already in use.");
           } else {
