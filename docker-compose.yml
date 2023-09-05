@@ -37,7 +37,7 @@ services:
 #     ports:
 #       - "8080:80"
 
-#   # MySQL Database
+#   # MySQL Databaseghh
 #   mysql-db:
 #     image: mysql:latest
 #     container_name: mysql
