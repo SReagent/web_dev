@@ -10,8 +10,8 @@ services:
   db:
     image: mysql:5.7
     environment:
-      -MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      -MYSQL_ROOT_PASSWORD: "Mysql2003"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: "Mysql2003"
       MYSQL_DATABASE: "biblion"
       MYSQL_USER: "root"
       MYSQL_PASSWORD: "root"
