@@ -1,7 +1,7 @@
 <?php
 $HOSTNAME='localhost';
 $USERNAME='root';
-$PASSWORD='';
+$PASSWORD='root';
 $DATABASE='biblion';
 
 $con = mysqli_connect($HOSTNAME,$USERNAME,$PASSWORD,$DATABASE);
