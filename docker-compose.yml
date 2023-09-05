@@ -25,5 +25,5 @@ services:
     ports:
       - "8001:80"
     environment:
-      PMA_HOST: db
+      PMA_HOST: mysql-db
       PMA_PORT: 3306
