@@ -1,5 +1,5 @@
 <?php
-$HOSTNAME='localhost';
+$HOSTNAME='db';
 $USERNAME='root';
 $PASSWORD='root';
 $DATABASE='biblion';
