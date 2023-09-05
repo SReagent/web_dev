@@ -1,29 +1,57 @@
-version: '3.8'
+version: "3"
 services:
-  # PHP Application
-  php-app:
+  www:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: phpops
     ports:
       - "8080:80"
 
-  # MySQL Database
-  mysql-db:
-    image: mysql:latest
-    container_name: mysql
+  db:
+    image: mysql:5.7
     environment:
       -MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       -MYSQL_ROOT_PASSWORD: "Mysql2003"
       MYSQL_DATABASE: "biblion"
       MYSQL_USER: "root"
       MYSQL_PASSWORD: "root"
+    volumes:
+      - "./Database/biblion.sql:/docker-entrypoint-initdb.d/biblion.sql"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
       - "8001:80"
     environment:
-      PMA_HOST: mysql-db
+      PMA_HOST: db
       PMA_PORT: 3306
+ 
+# version: '3.8'
+# services:
+#   # PHP Application
+#   php-app:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: phpops
+#     ports:
+#       - "8080:80"
+
+#   # MySQL Database
+#   mysql-db:
+#     image: mysql:latest
+#     container_name: mysql
+#     environment:
+#       -MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+#       -MYSQL_ROOT_PASSWORD: "Mysql2003"
+#       MYSQL_DATABASE: "biblion"
+#       MYSQL_USER: "root"
+#       MYSQL_PASSWORD: "root"
+
+#   phpmyadmin:
+#     image: phpmyadmin/phpmyadmin
+#     ports:
+#       - "8001:80"
+#     environment:
+#       PMA_HOST: mysql-db
+#       PMA_PORT: 3306
