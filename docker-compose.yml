@@ -16,7 +16,7 @@ services:
       MYSQL_USER: "root"
       MYSQL_PASSWORD: "root"
     volumes:
-      - "./Database/biblion.sql:/docker-entrypoint-initdb.d/biblion.sql"
+      - "Database/biblion.sql:/docker-entrypoint-initdb.d/biblion.sql"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
