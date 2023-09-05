@@ -1,5 +1,5 @@
 <?php
-include_once('../BackEnd/connect.php');
+include_once('connect.php');
 session_start();
 ?>
 

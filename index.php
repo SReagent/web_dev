@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once '../BackEnd/connect.php';
+include_once 'connect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

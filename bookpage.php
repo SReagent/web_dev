@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../BackEnd/connect.php";
+include_once "connect.php";
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +114,7 @@ include_once "../BackEnd/connect.php";
     <div class='container'>
       <?php
       require '../vendor/autoload.php';
-      include_once '../BackEnd/connect.php';
+      include_once 'connect.php';
 
       $bookid = (string)$_GET['id'];
       $query = "SELECT Content FROM books WHERE Book_ID = '$bookid'";
