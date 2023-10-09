@@ -41,13 +41,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # - name: Clean up old containers
-      #   run: |
-      #     docker ps -aq | xargs docker stop
-      #     docker ps -aq | xargs docker rm
+      - name: Clean up old containers
+        run: |
+          docker stop $(docker ps -aq)
+          docker rm $(docker ps -aq)
 
       - name: Build and push Docker images
         run: |
-          docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+          echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
           docker build -t "web" -f Dockerfile .
           docker push "web"
+
