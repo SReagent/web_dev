@@ -41,10 +41,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Clean up old containers
-        run: |
-          docker stop $(docker ps -q)
-          docker rm $(docker ps -aq)
+      # - name: Clean up old containers
+      #   run: |
+      #     docker stop $(docker ps -q)
+      #     docker rm $(docker ps -aq)
 
       - name: Build and push Docker images
         run: |
