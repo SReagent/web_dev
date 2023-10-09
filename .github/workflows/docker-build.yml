@@ -48,7 +48,6 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          cd Echo
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
           docker build -t "web" -f Dockerfile .
           docker push "web"
