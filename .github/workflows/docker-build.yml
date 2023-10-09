@@ -20,3 +20,7 @@ jobs:
         run: |
           docker build -t lightgaia/biblion .
           docker push lightgaia/biblion
+          
+      - name: Deploy with Docker Compose
+        run: |
+          docker-compose up -d
