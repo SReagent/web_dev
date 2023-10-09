@@ -51,6 +51,5 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          docker build -t "web" -f Dockerfile .
-          docker push "web"
-
+          docker build -t lightgaia/biblion_docker_01:latest .
+          docker push lightgaia/biblion_docker_01:latest
