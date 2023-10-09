@@ -1,57 +1,39 @@
 version: "3"
 services:
-  www:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:80"
-
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_ROOT_PASSWORD: "Mysql2003"
-      MYSQL_DATABASE: "biblion"
-      MYSQL_USER: "root"
-      MYSQL_PASSWORD: "root"
-    volumes:
-      - "./Database/biblion.sql:/docker-entrypoint-initdb.d/biblion.sql"
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    ports:
-      - "8001:80"
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
- 
-# version: '3.8'
-# services:
-#   # PHP Application
-#   php-app:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile
-#     container_name: phpops
-#     ports:
-#       - "8080:80"
-
-#   # MySQL Databaseghh
-#   mysql-db:
-#     image: mysql:latest
-#     container_name: mysql
-#     environment:
-#       -MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-#       -MYSQL_ROOT_PASSWORD: "Mysql2003"
-#       MYSQL_DATABASE: "biblion"
-#       MYSQL_USER: "root"
-#       MYSQL_PASSWORD: "root"
-
-#   phpmyadmin:
-#     image: phpmyadmin/phpmyadmin
-#     ports:
-#       - "8001:80"
-#     environment:
-#       PMA_HOST: mysql-db
-#       PMA_PORT: 3306
+    web:
+        build:
+            dockerfile: DockerFile
+        ports:
+            - "8001:80"
+        volumes:
+            - ./Web:/var/www/html/
+            - ./.htaccess:/var/www/html/.htaccess
+        links:
+            - db
+        networks:
+            - default
+    db:
+        image: mysql:8.0.16
+        command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci','--default-authentication-plugin=mysql_native_password']
+        environment:
+            MYSQL_DATABASE: biblion
+            MYSQL_USER: user
+            MYSQL_PASSWORD: test
+            MYSQL_ROOT_PASSWORD: test
+        volumes:
+            - ./dump:/docker-entrypoint-initdb.d
+            - persistent:/var/lib/mysql
+        networks:
+            - default
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:4.8
+        links:
+            - db:db
+        ports:
+            - 8000:80
+        environment:
+            MYSQL_USER: user
+            MYSQL_PASSWORD: test
+            MYSQL_ROOT_PASSWORD: test
+volumes:
+    persistent:
