@@ -43,7 +43,7 @@ jobs:
 
       - name: Clean up old containers
         run: |
-          docker stop $(docker ps -aq)
+          docker stop $(docker ps -q)
           docker rm $(docker ps -aq)
 
       - name: Build and push Docker images
