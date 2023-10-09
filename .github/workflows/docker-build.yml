@@ -1,35 +1,22 @@
-name: Deploy to DockerHub
+name: Docker Build and Push
 
 on:
   push:
     branches:
-      - main
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
 
-    env:
-      DOCKERHUB_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
-      DOCKERHUB_PASSWORD: ${{secrets.DOCKERHUB_PASSWORD}}
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-      # - name: Clean up old containers
-      #   run: |
-      #     docker stop $(docker ps -q)
-      #     docker rm $(docker ps -aq)
-
-      - name: Build and push Client Docker Image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: lightgaia19/biblion
-          dockerfile: ./Dockerfile
-          registry: docker.io
+      - name: Build and Push PHP Image
+        working-directory: ./DockerFile
+        run: |
+          docker build -t lightgaia19/php-image .
+          docker push lightgaia19/php-image
