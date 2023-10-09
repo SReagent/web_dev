@@ -3,6 +3,7 @@ name: Docker Build and Push
 on:
   push:
     branches:
+      - main
 
 jobs:
   build-and-push:
@@ -16,7 +17,6 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push PHP Image
-        working-directory: ./DockerFile
         run: |
-          docker build -t lightgaia19/php-image .
-          docker push lightgaia19/php-image
+          docker build -t lightgaia/php-image-name .
+          docker push lightgaia/php-image-name
