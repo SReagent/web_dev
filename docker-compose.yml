@@ -3,7 +3,7 @@ version: "3.9"
 services:
   web:
     build:
-      context: .
+      context: ./Web
       dockerfile: DockerFile
     ports:
       - "8001:80"
