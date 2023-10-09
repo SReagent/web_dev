@@ -18,5 +18,5 @@ jobs:
 
       - name: Build and Push PHP Image
         run: |
-          docker build -t lightgaia/php-image-name .
-          docker push lightgaia/php-image-name
+          docker build -t lightgaia/biblion .
+          docker push lightgaia/biblion
