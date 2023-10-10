@@ -28,7 +28,7 @@ services:
       - default
 
   phpmyadmin:
-    image: phpmyadmin:4.8
+    image: phpmyadmin/phpmyadmin:4.8
     ports:
       - 8000:80
     environment:
