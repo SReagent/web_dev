@@ -1,6 +1,9 @@
 <?php
 include_once('../BackEnd/connect.php');
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+;
 ?>
 
 <!DOCTYPE html>
@@ -32,9 +35,9 @@ session_start();
       </div>
       <div class="buttons">
         <div class="cta">
-          <?php if (isset($_SESSION['loggedIn'])) : ?>
+          <?php if (isset($_SESSION['loggedIn'])): ?>
             <a href=""><button><img src="../images/logout.png"></button></a>
-          <?php else : ?>
+          <?php else: ?>
             <a href="SignIn.php"><button onclick="signOut()"><img src="../images/user-3-fill.png"></button></a>
           <?php endif; ?>
         </div>
@@ -185,8 +188,8 @@ session_start();
     </script>
 
     <script type="text/javascript">
-      $(document).ready(function() {
-        $("#live_search").keyup(function() {
+      $(document).ready(function () {
+        $("#live_search").keyup(function () {
           var input = $(this).val();
 
           if (input != "") {
@@ -196,7 +199,7 @@ session_start();
               data: {
                 input: input
               },
-              success: function(data) {
+              success: function (data) {
                 $("#searchresult").html(data);
                 $("#searchresult").css("display", "block");
               }
@@ -205,7 +208,7 @@ session_start();
             $("#searchresult").css("display", "none");
           }
         });
-        $(document).on("click", ".book-title", function() {
+        $(document).on("click", ".book-title", function () {
           var bookid = $(this).attr("id").replace("book", "");
           window.location.href = "bookpage.php?id=" + bookid.toString();
         });
@@ -214,15 +217,15 @@ session_start();
 
 
     <script>
-      $(document).ready(function() {
+      $(document).ready(function () {
         // Get all the relevant elements
         var quantityInputs = $('.quantity-field');
         var prices = $('.price');
         var subtotalElements = $('.subtotal');
 
         // Loop through each quantity input field and add an event listener
-        quantityInputs.each(function(index) {
-          $(this).change(function() {
+        quantityInputs.each(function (index) {
+          $(this).change(function () {
             // Get the current quantity value
             var quantity = parseInt($(this).val());
 
@@ -237,7 +240,7 @@ session_start();
           });
         });
 
-        $('.remove button').click(function() {
+        $('.remove button').click(function () {
 
           var item = $(this).closest('.basket-product');
           item.remove();
@@ -259,7 +262,7 @@ session_start();
 
     <!-- Discount and total value (Summary) -->
     <script>
-      $(document).ready(function() {
+      $(document).ready(function () {
         // Get the relevant elements
         var quantityInput = $('.quantity-field');
         var priceElements = $('.price');
@@ -270,7 +273,7 @@ session_start();
 
         // Calculate initial total value
         var total = 0;
-        subtotalElements.each(function() {
+        subtotalElements.each(function () {
           total += parseFloat($(this).text());
         });
         basketsubElement.text(total.toFixed(2));
@@ -284,7 +287,7 @@ session_start();
         totalElement.text(total.toFixed(2));
 
         // Add event listeners to quantity input fields
-        quantityInput.change(function() {
+        quantityInput.change(function () {
           // Get the current quantity value
           var quantity = parseInt($(this).val());
 
@@ -299,7 +302,7 @@ session_start();
 
           // Calculate the new total and update the total element
           total = 0;
-          subtotalElements.each(function() {
+          subtotalElements.each(function () {
             total += parseFloat($(this).text());
           });
           totalElement.text(total.toFixed(2));
@@ -310,7 +313,7 @@ session_start();
 
     <script>
       var flag = false;
-      $(document).ready(function() {
+      $(document).ready(function () {
 
 
         var discountElement = $('#discount-value');
@@ -319,7 +322,7 @@ session_start();
         var total = parseFloat(totalElement.text());
         var sub_total = $('#basket-subtotal');
         var subtotal = parseFloat(sub_total.text());
-        $('.promo-code-cta').click(function() {
+        $('.promo-code-cta').click(function () {
           var promo = $('#promo-code').val().toUpperCase();
           discount = 0;
           if (code === promo && flag == false) {

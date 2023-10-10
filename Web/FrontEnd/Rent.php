@@ -1,6 +1,9 @@
 <?php
 include_once '../BackEnd/connect.php';
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,14 +28,15 @@ session_start();
                 </ul>
             </div>
             <div class="search-container">
-                <input type="text" class="searchbar" id="live_search" autocomplete="off" placeholder="Looking for something">
+                <input type="text" class="searchbar" id="live_search" autocomplete="off"
+                    placeholder="Looking for something">
                 <div class="search-result-container" id="searchresult"></div>
             </div>
             <div class="buttons">
                 <div class="cta">
-                    <?php if (isset($_SESSION['loggedIn'])) : ?>
+                    <?php if (isset($_SESSION['loggedIn'])): ?>
                         <a href=""><button><img src="../images/logout.png"></button></a>
-                    <?php else : ?>
+                    <?php else: ?>
                         <a href="SignIn.php"><button onclick="signOut()"><img src="../images/user-3-fill.png"></button></a>
                     <?php endif; ?>
                 </div>
@@ -59,7 +63,7 @@ session_start();
                             $book_image = $row['Book_Image'];
                             $description = $row['Book_Description'];
                             echo
-                            "<div class='Book'>  
+                                "<div class='Book'>  
                                 <img src = 'data:image/png;base64," . base64_encode($book_image) . "' alt = 'Image $book_id'>
                                 <div class='content'>
                                     <div class='BookTitle'>
@@ -85,8 +89,8 @@ session_start();
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('.read').click(function() {
+        $(document).ready(function () {
+            $('.read').click(function () {
                 const bookId = this.id;
                 window.location.href = 'bookpage.php?id=' + bookId;
             });
@@ -119,8 +123,8 @@ session_start();
     </script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $("#live_search").keyup(function() {
+        $(document).ready(function () {
+            $("#live_search").keyup(function () {
                 var input = $(this).val();
 
                 if (input != "") {
@@ -130,7 +134,7 @@ session_start();
                         data: {
                             input: input
                         },
-                        success: function(data) {
+                        success: function (data) {
                             $("#searchresult").html(data);
                             $("#searchresult").css("display", "block");
                         }
@@ -139,7 +143,7 @@ session_start();
                     $("#searchresult").css("display", "none");
                 }
             });
-            $(document).on("click", ".book-title", function() {
+            $(document).on("click", ".book-title", function () {
                 var bookid = $(this).attr("id").replace("book", "");
                 window.location.href = "bookpage.php?id=" + bookid.toString();
             });

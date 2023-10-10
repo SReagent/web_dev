@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+;
 include_once './BackEnd/connect.php';
 ?>
 <!DOCTYPE html>
@@ -27,19 +30,22 @@ include_once './BackEnd/connect.php';
                 </ul>
             </div>
             <div class="search-container">
-                <input type="text" class="searchbar" id="live_search" autocomplete="off" placeholder="Looking for something">
+                <input type="text" class="searchbar" id="live_search" autocomplete="off"
+                    placeholder="Looking for something">
                 <div class="search-result-container" id="searchresult"></div>
             </div>
             <div class="buttons">
                 <div class="cta">
-                    <?php if (isset($_SESSION['loggedIn'])) : ?>
+                    <?php if (isset($_SESSION['loggedIn'])): ?>
                         <a href=""><button><img src="../images/logout.png"></button></a>
-                    <?php else : ?>
-                        <a href="./FrontEnd/SignIn.php"><button onclick="signOut()"><img src="../images/user-3-fill.png"></button></a>
+                    <?php else: ?>
+                        <a href="./FrontEnd/SignIn.php"><button onclick="signOut()"><img
+                                    src="../images/user-3-fill.png"></button></a>
                     <?php endif; ?>
                 </div>
                 <div class="cta">
-                    <a href="./FrontEnd/cart.php"> <button type="button"><img src="../images/shopping-cart3.png"></button></a>
+                    <a href="./FrontEnd/cart.php"> <button type="button"><img
+                                src="../images/shopping-cart3.png"></button></a>
                 </div>
             </div>
         </div>
@@ -69,7 +75,7 @@ include_once './BackEnd/connect.php';
         </div>
         <?php
         echo
-        "<div class='container2'>
+            "<div class='container2'>
                 <div class='col1'>
                     <div class='text'>ADVENTURE</div>
                         <a href='./FrontEnd/Genre.php?id=1'>
@@ -121,12 +127,12 @@ include_once './BackEnd/connect.php';
                     </a>
                 </div>
             </div>"
-        ?>
+            ?>
     </div>
 
     <script>
-        $(document).ready(function() {
-            $(".wrap").click(function() {
+        $(document).ready(function () {
+            $(".wrap").click(function () {
                 $(".dropdown-content").toggleClass("opensidebar")
             });
         });
@@ -172,8 +178,8 @@ include_once './BackEnd/connect.php';
     </script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $("#live_search").keyup(function() {
+        $(document).ready(function () {
+            $("#live_search").keyup(function () {
                 var input = $(this).val();
 
                 if (input != "") {
@@ -183,7 +189,7 @@ include_once './BackEnd/connect.php';
                         data: {
                             input: input
                         },
-                        success: function(data) {
+                        success: function (data) {
                             $("#searchresult").html(data);
                             $("#searchresult").css("display", "block");
                         }
@@ -193,7 +199,7 @@ include_once './BackEnd/connect.php';
                 }
             });
 
-            $(document).on("click", ".book-title", function() {
+            $(document).on("click", ".book-title", function () {
                 var bookid = $(this).attr("id").replace("book", "");
                 window.location.href = "./FrontEnd/bookpage.php?id=" + bookid.toString();
             });

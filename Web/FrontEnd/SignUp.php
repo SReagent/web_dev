@@ -1,5 +1,8 @@
 <?php
-    session_start();
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,7 +99,7 @@
         type: "POST",
         url: "../BackEnd/backend_signup.php",
         data: formData,
-        success: function(response) {
+        success: function (response) {
           if (response === "success") {
             window.location.href = document.referrer;
           } else if (response === "duplicate") {
@@ -105,7 +108,7 @@
             alert("Error occurred while registering. Please try again.");
           }
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
           console.log(error);
           alert("An error occurred while processing your request. Please try again later.");
         },

@@ -1,8 +1,11 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+;
 include_once 'connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     include_once 'connect.php';
 

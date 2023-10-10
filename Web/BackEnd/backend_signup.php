@@ -1,6 +1,9 @@
 <?php
-include_once'connect.php';
-session_start();
+include_once 'connect.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+;
 
 $username = $_POST["username"];
 $email = $_POST["email"];
