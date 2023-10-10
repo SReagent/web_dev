@@ -23,22 +23,3 @@ jobs:
       - name: Push Custom Container
         run: |
           docker push lightgaia/biblion:web-1.0
-
-      - name: Tag and Push MySQL Container
-        run: |
-          docker pull mysql:8.0.16
-          docker tag mysql:8.0.16 lightgaia/biblion:mysql-8.0.16
-          docker push lightgaia/biblion:mysql-8.0.16
-
-      - name: Tag and Push PHPMyAdmin Container
-        run: |
-          docker pull phpmyadmin/phpmyadmin:4.8
-          docker tag phpmyadmin/phpmyadmin:4.8 lightgaia/biblion:phpmyadmin-4.8
-          docker push lightgaia/biblion:phpmyadmin-4.8
-
-      - name: Deploy with Docker Compose
-        run: |
-          sed -i "s/image: lightgaia\/biblion:web-1.0/image: lightgaia\/biblion:web-1.0/" docker-compose.yml
-          sed -i "s/image: mysql:8.0.16/image: lightgaia\/biblion:mysql-8.0.16/" docker-compose.yml
-          sed -i "s/image: phpmyadmin\/phpmyadmin:4.8/image: lightgaia\/biblion:phpmyadmin-4.8/" docker-compose.yml
-          docker-compose up -d

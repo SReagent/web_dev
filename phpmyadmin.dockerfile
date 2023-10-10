@@ -1,1 +1,0 @@
-FROM phpmyadmin:4.8
