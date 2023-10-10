@@ -1,3 +1,36 @@
+# name: Docker Build and Push
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build-and-push:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v2
+
+#       - name: Login to Docker Hub
+#         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+#       - name: Build and Tag Containers
+#         run: |
+#           docker-compose build
+#           docker tag lightgaia/biblion:1.0 ${{ secrets.DOCKER_USERNAME }}/biblion:web
+#           docker tag lightgaia/biblion:8.0.16 ${{ secrets.DOCKER_USERNAME }}/biblion:db
+#           docker tag lightgaia/biblion:4.8 ${{ secrets.DOCKER_USERNAME }}/biblion:phpmyadmin
+
+#       - name: Push Containers
+#         run: |
+#           # Push the tagged images to Docker Hub
+#           docker push ${{ secrets.DOCKER_USERNAME }}/biblion:web
+#           docker push ${{ secrets.DOCKER_USERNAME }}/biblion:db
+#           docker push ${{ secrets.DOCKER_USERNAME }}/biblion:phpmyadmin
+
+
 name: Docker Build and Push
 
 on:
@@ -16,11 +49,29 @@ jobs:
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and Push Containers
+      - name: Build and Tag Custom Container
         run: |
-          docker-compose build
-          docker-compose push
+          docker build -t lightgaia/biblion:web-1.0 -f Dockerfile .
+
+      - name: Push Custom Container
+        run: |
+          docker push lightgaia/biblion:web-1.0
+
+      - name: Tag and Push MySQL Container
+        run: |
+          docker pull mysql:8.0.16
+          docker tag mysql:8.0.16 lightgaia/biblion:mysql-8.0.16
+          docker push lightgaia/biblion:mysql-8.0.16
+
+      - name: Tag and Push PHPMyAdmin Container
+        run: |
+          docker pull phpmyadmin/phpmyadmin:4.8
+          docker tag phpmyadmin/phpmyadmin:4.8 lightgaia/biblion:phpmyadmin-4.8
+          docker push lightgaia/biblion:phpmyadmin-4.8
 
       - name: Deploy with Docker Compose
         run: |
+          sed -i "s/image: lightgaia\/biblion:web-1.0/image: lightgaia\/biblion:web-1.0/" docker-compose.yml
+          sed -i "s/image: mysql:8.0.16/image: lightgaia\/biblion:mysql-8.0.16/" docker-compose.yml
+          sed -i "s/image: phpmyadmin\/phpmyadmin:4.8/image: lightgaia\/biblion:phpmyadmin-4.8/" docker-compose.yml
           docker-compose up -d

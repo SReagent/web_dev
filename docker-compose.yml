@@ -4,8 +4,8 @@ services:
   web:
     build:
       context: .
-      dockerfile: web.dockerfile
-    image: lightgaia/biblion:1.0
+      dockerfile: Dockerfile
+    image: lightgaia/biblion:web-1.0
     ports:
       - "8001:80"
     volumes:
@@ -15,10 +15,10 @@ services:
       - default
 
   db:
-    build:
+    build: 
       context: .
       dockerfile: db.dockerfile
-    image: lightgaia/biblion:8.0.16
+    image: lightgaia/biblion:mysql-8.0.16
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci','--default-authentication-plugin=mysql_native_password']
     environment:
       MYSQL_DATABASE: biblion
@@ -32,10 +32,10 @@ services:
       - default
 
   phpmyadmin:
-    build:
+    build: 
       context: .
       dockerfile: phpmyadmin.dockerfile
-    image: lightgaia/biblion:4.8
+    image: lightgaia/biblion:phpmyadmin-4.8
     ports:
       - 8000:80
     environment:
