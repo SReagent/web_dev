@@ -1,36 +1,3 @@
-# name: Docker Build and Push
-
-# on:
-#   push:
-#     branches:
-#       - main
-
-# jobs:
-#   build-and-push:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout Code
-#         uses: actions/checkout@v2
-
-#       - name: Login to Docker Hub
-#         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-#       - name: Build and Tag Containers
-#         run: |
-#           docker-compose build
-#           docker tag lightgaia/biblion:1.0 ${{ secrets.DOCKER_USERNAME }}/biblion:web
-#           docker tag lightgaia/biblion:8.0.16 ${{ secrets.DOCKER_USERNAME }}/biblion:db
-#           docker tag lightgaia/biblion:4.8 ${{ secrets.DOCKER_USERNAME }}/biblion:phpmyadmin
-
-#       - name: Push Containers
-#         run: |
-#           # Push the tagged images to Docker Hub
-#           docker push ${{ secrets.DOCKER_USERNAME }}/biblion:web
-#           docker push ${{ secrets.DOCKER_USERNAME }}/biblion:db
-#           docker push ${{ secrets.DOCKER_USERNAME }}/biblion:phpmyadmin
-
-
 name: Docker Build and Push
 
 on:
