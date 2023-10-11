@@ -1,4 +1,4 @@
-# Biblion - A Book Buying Website
+# Biblion - A Book Rental Website
 
 Biblion is a web-based book buying platform designed to help users explore, purchase, and manage their book collections. This README provides an overview of the project, its features, and how to set it up for development or use.
 
