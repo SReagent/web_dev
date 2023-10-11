@@ -9,6 +9,7 @@ Biblion is a web-based book buying platform designed to help users explore, purc
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Contributing](#contributing)
+- [screenshots](#screenshots)
 
 ## Features
 
@@ -85,3 +86,18 @@ Contributions to Biblion are welcome. To contribute to the project, follow these
 2. Create a new branch for your feature or bug fix.
 3. Make your changes and ensure they work as expected.
 4. Create a pull request with a clear description of your changes.
+
+## Screenshots
+![image](https://github.com/Safwan-Mohammed/web_dev/assets/109622013/f21210ee-32a1-4f6b-b613-866c2c5350ca)
+![image](https://github.com/Safwan-Mohammed/web_dev/assets/109622013/ee9e1688-59ce-4a73-9f07-b00c45d14baa)
+![image](https://github.com/Safwan-Mohammed/web_dev/assets/109622013/f90b5593-ea1a-4ab8-8661-af1e597154f1)
+![image](https://github.com/Safwan-Mohammed/web_dev/assets/109622013/c4910184-1b87-43d3-acae-46a9a0d2d397)
+![image](https://github.com/Safwan-Mohammed/web_dev/assets/109622013/80ecf328-5b09-4798-a468-d3543e4f334a)
+![image](https://github.com/Safwan-Mohammed/web_dev/assets/109622013/ce016c31-4e12-4999-aeb6-131fa458ae5b)
+![image](https://github.com/Safwan-Mohammed/web_dev/assets/109622013/d488a999-72ab-4ad3-9a34-1a4ca29c9d60)
+![image](https://github.com/Safwan-Mohammed/web_dev/assets/109622013/c8a34e08-5189-47d3-a913-f2be9acff5c0)
+![image](https://github.com/Safwan-Mohammed/web_dev/assets/109622013/70d74264-12aa-4ce7-a0a4-845ab4e099a9)
+![image](https://github.com/Safwan-Mohammed/web_dev/assets/109622013/ed843994-956c-4bb3-83e1-01ed81027c9b)
+![image](https://github.com/Safwan-Mohammed/web_dev/assets/109622013/43ba165b-ce1f-46d4-bf33-a8f402dc5abd)
+
+
