@@ -138,7 +138,6 @@ session_start();
             </div>
             <div class="summary-checkout">
               <button class="checkout-cta" onclick="openPopup('popup')">Go to Secure Checkout</button>
-              <a href="payment.php"></a>
             </div>
           </div>
         </aside>

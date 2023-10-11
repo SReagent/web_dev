@@ -81,8 +81,11 @@ include_once "../BackEnd/connect.php";
                 <form method='POST' action='add_to_cart.php'>
                   <input type='hidden' name='Book_ID' value='{$bookId}'>
                   <input type='hidden' id='quantity' name='Quantity' value='0'>
-                  <button type='button'>
-                    <img src='../images/shopping-cart3.png' onclick='openWrong(\"{$bookId}\")'>
+                  <button type='button'>";
+                    if (isset($_SESSION['loggedIn']))
+                      echo "<img src='../images/shopping-cart3.png' onclick='openWrong(\"{$bookId}\")'>";
+                    else 
+                      echo "<a href='SignIn.php'><img src='../images/shopping-cart3.png' onclick='openWrong(\"{$bookId}\")'></a>
                   </button>
                 </form>
               </div>
